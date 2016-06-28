@@ -1,0 +1,37 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath "net.serenity-bdd:serenity-gradle-plugin:1.1.36"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+def compatibilityVersion = JavaVersion.VERSION_1_8
+sourceCompatibility = compatibilityVersion
+targetCompatibility = compatibilityVersion
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+	testCompile group: 'net.serenity-bdd', name: 'serenity-core', version: '1.1.36'
+	testCompile group: 'net.serenity-bdd', name: 'serenity-junit', version: '1.1.36'
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.4.1'
+	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+}
+
+test {
+	ignoreFailures = true
+}
+
+gradle.startParameter.continueOnFailure = true
